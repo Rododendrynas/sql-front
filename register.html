@@ -54,7 +54,7 @@
              document.forms[0].reset();
            }
                   
-           fetch("https://rododendrynas-front-q7vzp.ondigitalocean.app/v1/auth/register", {
+           fetch("https://rododendrynas-moym9.ondigitalocean.app/RododendrynasBack/v1/auth/register", {
                method: "POST",
                headers: {
                    "Content-Type": "application/json"
@@ -69,7 +69,7 @@
            .then((data) => {
             if (data.msg) {
               alert(data.msg);
-              return location.replace("/login.html");
+              return location.replace("/index.html");
             }
 
             return alert(data.err || "Unexpexted error.");
