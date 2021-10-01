@@ -50,13 +50,16 @@
         });
       }
 
-      fetch("http://localhost:25060/v1/content/groups/", {
-        method: "GET",
-        headers: {
-          authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      })
+      fetch(
+        "https://rododendrynas-front-q7vzp.ondigitalocean.app/v1/content/groups/",
+        {
+          method: "GET",
+          headers: {
+            authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data.err) {
@@ -76,14 +79,17 @@
 
         const groupId = e.target.elements.id.value.trim();
 
-        fetch("http://localhost:25060/v1/content/groups/", {
-          method: "POST",
-          headers: {
-            authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ id: groupId }),
-        })
+        fetch(
+          "https://rododendrynas-front-q7vzp.ondigitalocean.app/v1/content/groups/",
+          {
+            method: "POST",
+            headers: {
+              authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ id: groupId }),
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.msg) {
