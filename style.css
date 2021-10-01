@@ -1,0 +1,119 @@
+.containerRegisterAndLogin {
+  max-width: 40%;
+  margin: 0 auto;
+}
+
+.containerAdd {
+  max-width: 30%;
+  margin: 0 auto;
+}
+
+header {
+  text-align: center;
+  padding: 4rem 0 4rem 0;
+}
+
+header img {
+  height: 6rem;
+}
+
+header h2 {
+  color: rgb(150, 144, 144);
+  font-weight: lighter;
+}
+
+.center {
+  text-align: center;
+}
+
+input {
+  border: 1px solid rgb(179, 174, 174);
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 1rem;
+  height: 2rem;
+}
+
+button {
+  border: 1px solid rgb(0, 0, 0);
+  background: rgb(255, 255, 255);
+  padding: 0.2rem 1rem 0.2rem 1rem;
+}
+
+label,
+button {
+  font-weight: bold;
+}
+
+button {
+  cursor: pointer;
+}
+
+main h2 {
+  font-size: 18px;
+}
+
+#groupBlocks {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem;
+  flex-wrap: wrap;
+}
+
+#groups {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: left;
+  margin: 2rem;
+}
+
+#groups div {
+  border: 1px solid rgb(179, 174, 174);
+  width: calc((100% - 16rem) / 5);
+  height: 10rem;
+  margin-bottom: 3rem;
+  margin-right: 3rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  padding: 2rem;
+  font-size: 25px;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+
+#groups div:nth-child(5n) {
+  margin-right: 0;
+}
+
+#bills {
+  max-width: 70%;
+  margin: 0 auto;
+}
+
+table {
+  width: 100%;
+  text-align: left;
+  margin-bottom: 3rem;
+}
+
+th,
+td {
+  padding: 0.5rem;
+}
+
+tbody tr:nth-child(2n + 1) {
+  background: rgb(221, 205, 205);
+}
+
+a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: rgb(26, 26, 192);
+  cursor: pointer;
+}

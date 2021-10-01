@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="container">
+      <img
+        src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
+        alt="googleLogo"
+      />
+      <h1>Split Bill</h1>
+      <h2>BEST IN MARKET</h1>
+    </header>
+    <main class="containerRegisterAndLogin">
+      <h1>Register</h1>
+      <div>
+        <form>
+          <label for="name">Full Name</label>
+          <input type="text" id="name" minlength="5" maxlength="255"/>
+          <label for="email">Email</label>
+          <input type="email" id="email" minlength="6" maxlength="255"/>
+          <label for="password">Password</label>
+          <input type="password" id="password" minlength="8" maxlength="255" />
+          <label for="repeatPassword">Repeat Password</label>
+          <input type="password" id="repeatPassword" minlength="8" maxlength="255"/>
+          <button>Register</button>
+        </form>
+      </div>
+      <h2>Or perhaps, just <a href="login.html">login?</a></h2>
+    </main>
+    <script>
+      const token = localStorage.getItem("token");
+
+      if (token) {
+         location.replace("/groups.html");
+       }
+
+       document.forms[0].addEventListener("submit", (e) => {
+           e.preventDefault();
+
+           if(e.target.elements.password.value !== e.target.repeatPassword.value) {
+             alert("Passwords do not match. Try again")
+             document.forms[0].reset();
+           }
+                  
+           fetch("http://localhost:25060/v1/auth/register", {
+               method: "POST",
+               headers: {
+                   "Content-Type": "application/json"
+               },
+               body:JSON.stringify({
+                   name: e.target.name.value,
+                   email: e.target.elements.email.value.trim().toLowerCase(),
+                   password: e.target.password.value.trim().toLowerCase(),
+               }),
+           })
+           .then((res) => res.json())
+           .then((data) => {
+            if (data.msg) {
+              alert(data.msg);
+              return location.replace("/login.html");
+            }
+
+            return alert(data.err || "Unexpexted error.");
+          })
+          .catch((err) => alert(err.message),  document.forms[0].reset());
+      });
+   </script>
+  </body>
+</html>

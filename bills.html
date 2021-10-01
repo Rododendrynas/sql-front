@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="container">
+      <img
+        src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
+        alt="googleLogo"
+      />
+      <h1>Split Bill</h1>
+    </header>
+    <main>
+      <h1 class="center">Group's bills:</h1>
+      <section id="bills">
+        <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Description</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>For paper</td>
+                <td>12</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>For paper</td>
+                <td>12</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>For paper</td>
+                <td>12</td>
+              </tr>
+            </tbody>
+          </table>
+      </section>
+
+      <div class="containerAdd">
+        <h1>Add bill</h1>
+        <form>
+          <label for="ammount">Amount:</label>
+          <input type="number" id="amount" />
+          <form>
+            <label for="description">Description:</label>
+            <input type="text" id="description" />
+        </form>
+        <button>Add</button>
+      </div>
+    </main>
+  </body>
+</html>

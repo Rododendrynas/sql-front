@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="container">
+      <img
+        src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png"
+        alt="googleLogo"
+      />
+      <h1>Split Bill</h1>
+    </header>
+    <main>
+      <h1 class="center">Select Yor Group</h1>
+      <div id="groups"></div>
+      <div class="containerAdd">
+        <h1>Add group</h1>
+        <form>
+          <label for="id">Group ID:</label>
+          <input type="text" id="id" minlength="1" maxlength="50" />
+          <button>Add</button>
+        </form>
+      </div>
+    </main>
+    <script>
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        location.replace("/login.html");
+      }
+
+      function displayGroups(groups) {
+        let groupContentBlock = document.getElementById("groups");
+        console.log(groups);
+        groups.forEach((groups) => {
+          const groupInfoBlock = document.createElement("div");
+          groupInfoBlock.textContent = "ID: " + groups.name;
+          groupContentBlock.append(groupInfoBlock);
+        });
+      }
+
+      fetch("http://localhost:25060/v1/content/groups/", {
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.err) {
+            return alert(data.err);
+          }
+
+          if (data.length === 0) {
+            return alert("No groups found");
+          }
+
+          displayGroups(data);
+        })
+        .catch((err) => alert(err.message));
+
+      document.forms[0].addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const groupId = e.target.elements.id.value.trim();
+
+        fetch("http://localhost:25060/v1/content/groups/", {
+          method: "POST",
+          headers: {
+            authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id: groupId }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.msg) {
+              alert(data.msg);
+
+              document.forms[0].reset();
+              return "";
+            }
+
+            return alert(data.err || "Unexpected error by adding a group");
+          })
+          .catch((err) => alert(err.message));
+      });
+    </script>
+  </body>
+</html>
